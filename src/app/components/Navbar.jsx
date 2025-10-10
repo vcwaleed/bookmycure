@@ -1,31 +1,85 @@
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+
 export default function Navbar() {
-    return (
-        <nav class="border-gray-200 bg-gray-50">
-            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap">Flowbite</span>
-                </a>
-                <button data-collapse-toggle="navbar-solid-bg" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-                    </svg>
-                </button>
-                <div class="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
-                    <ul class="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
-                        <li>
-                            <a href="#" class="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700" aria-current="page">Home</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 ">Services</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 ">Pricing</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    )
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <nav className="border-b border-gray-200 bg-white shadow-sm relative">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-3">
+        <Link href="/" className="flex items-center space-x-3">
+          <Image
+            src="/BMC_logo.jpeg"
+            alt="BMC Logo"
+            width={48}
+            height={48}
+            unoptimized
+            className="h-12 w-auto"
+          />
+        </Link>
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          type="button"
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-600 rounded-lg md:hidden hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-100"
+          aria-expanded={menuOpen}
+        >
+          <span className="sr-only">Open main menu</span>
+          <svg
+            className="w-5 h-5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 17 14"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d={
+                menuOpen
+                  ? "M2 2L15 13M2 13L15 2"
+                  : "M1 1h15M1 7h15M1 13h15"
+              }
+            />
+          </svg>
+        </button>
+        <div
+          className={`${menuOpen
+              ? "absolute top-full left-0 w-full bg-white shadow-md z-50"
+              : "hidden"
+            } md:static md:block md:w-auto`}
+        >
+          <ul className="flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0 font-medium">
+            <li>
+              <Link
+                href="/"
+                className="block py-2 px-3 md:p-0 text-blue-700 font-semibold"
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/packages"
+                className="block py-2 px-3 md:p-0 text-gray-800 hover:text-blue-700 transition-colors"
+              >
+                Health Packages
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/about"
+                className="block py-2 px-3 md:p-0 text-gray-800 hover:text-blue-700 transition-colors"
+              >
+                About
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 }
