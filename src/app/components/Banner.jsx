@@ -12,7 +12,7 @@ export default function Banner() {
                 priority
                 className="object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 via-blue-800/60 to-transparent backdrop-brightness-75" />
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-700/70 via-blue-800/60 to-transparent backdrop-brightness-75" />
             <div className="absolute inset-0 max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between px-6 md:px-8">
                 <div className="relative z-10 max-w-lg text-center md:text-left mt-10 md:mt-0">
                     <h1 className="font-extrabold leading-tight text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]">
