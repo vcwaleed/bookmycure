@@ -2,11 +2,11 @@
 import Image from "next/image"
 
 const data = [
-  { label: "🧪 Health Packages", image: "/health.png" },
-  { label: "💉 Blood Tests", image: "/blood.png" },
-  { label: "💧 Urine Tests", image: "/urine.png" },
-  { label: "🧠 MRI Scan", image: "/mri.png" },
-  { label: "🩻 Ultrasound", image: "/ultrasound.png" },
+  { label: "Health Packages", image: "/health.png" },
+  { label: "Blood Tests", image: "/blood.png" },
+  { label: "Urine Tests", image: "/urine.png" },
+  { label: "MRI Scan", image: "/mri.png" },
+  { label: "Ultrasound", image: "/ultrasound.png" },
 ]
 
 export default function ServiceCard() {

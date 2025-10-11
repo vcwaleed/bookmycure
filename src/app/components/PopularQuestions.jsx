@@ -95,21 +95,15 @@ const PopularQuestions = () => {
                     </p>
                 </div>
             </div>
-
-            {/* Q&A Section */}
             <div className="max-w-screen-xl mx-auto px-4 py-3 space-y-6">
                 {questions.map((q, i) => (
                     <div
                         key={i}
-                        className="  overflow-hidden"
+                        className="overflow-hidden"
                     >
-
                         <h3 className="text-xl md:text-2xl font-semibold text-brand mb-4">{q.question}</h3>
                         <span className="text-purple-600 font-bold text-xl">
                         </span>
-
-
-
                         <div className="px-6 pb-6 space-y-4 text-gray-700">
                             {q.answers.map((a, j) => (
                                 <div key={j}>
@@ -118,7 +112,6 @@ const PopularQuestions = () => {
                                 </div>
                             ))}
                         </div>
-
                     </div>
                 ))}
             </div>
