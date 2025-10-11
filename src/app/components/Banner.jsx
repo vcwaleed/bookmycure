@@ -14,12 +14,12 @@ export default function Banner() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-blue-700/70 via-blue-800/60 to-transparent backdrop-brightness-75" />
             <div className="absolute inset-0 max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between px-6 md:px-8">
-                <div className="relative z-10 max-w-lg text-center md:text-left mt-10 md:mt-0">
+                <div className="relative z-10 max-w-lg text-center md:text-left mt-6 md:mt-0">
                     <h1 className="font-extrabold leading-tight text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]">
                         <span className="block text-xl whitespace-nowrap md:text-6xl lg:text-6xl">
                             FIND BEST LABS
                         </span>
-                        <span className="block text-xl md:text-4xl text-orange-400 font-extrabold mt-2">
+                        <span className="block text-xl md:text-4xl text-orange-400 font-extrabold mt-1">
                             AT AFFORDABLE PRICES
                         </span>
                     </h1>
@@ -40,7 +40,7 @@ export default function Banner() {
 
                         <Link
                             href="/"
-                            className="relative inline-block px-8 py-3 font-semibold text-white rounded-md bg-blue-600 shadow-md hover:bg-blue-700 hover:shadow-lg transition-all duration-300"
+                            className="relative inline-block bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-4 py-2 rounded-md transition-all duration-300"
                         >
                             GET TEST PRICES
                         </Link>
@@ -52,7 +52,7 @@ export default function Banner() {
                     </h2>
                     <Link
                         href="/book"
-                        className="relative inline-block px-6 py-2 font-semibold text-white rounded-md bg-blue-600 shadow-md hover:bg-blue-700 hover:shadow-lg transition-all duration-300"
+                        className="relative inline-block bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-4 py-2 rounded-md transition-all duration-300"
                     >
                         GET TEST PRICES
                     </Link>
