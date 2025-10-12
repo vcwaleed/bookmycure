@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import WhatsAppIcon from '@/app/components/WhatsAppIcon';
+import Image from "next/image";
 import { ArrowLeft, Star, Clock, MapPin, Shield, Calendar, Phone } from 'lucide-react';
 
 const PackageDetailsPage = () => {
@@ -56,11 +57,13 @@ const PackageDetailsPage = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-            <img
-              src={pkg.image}
-              alt={pkg.name}
-              className="w-full h-80 object-cover"
-            />
+          <Image
+            src={pkg.image}
+            alt={pkg.name}
+            width={500}
+            height={300}
+            className="w-full h-auto rounded-lg shadow-lg"
+          />
 
             <div className="p-8">
               <div className="flex items-center justify-between mb-4">
@@ -126,13 +129,13 @@ const PackageDetailsPage = () => {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-full md:flex items-center justify-center flex-shrink-0 hidden ">
                   <Shield className="text-white w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 leading-tight">
-                  BookMyCure — Pakistan's Trusted Healthcare Booking Platform
+                 <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 leading-tight">
+                  BookMyCure — Pakistan&apos;s Trusted Healthcare Booking Platform
                 </h2>
               </div>
               <div className="space-y-4 sm:space-y-6 text-gray-600">
                 <p className="text-base sm:text-lg lg:text-xl leading-relaxed sm:leading-loose">
-                  <strong className="text-green-600">Pakistan's first platform</strong> to compare prices of lab tests and aesthetic treatments.
+                   <strong className="text-green-600">Pakistan&apos;s first platform</strong> to compare prices of lab tests and aesthetic treatments.
                   Find trusted labs and clinics, explore discounts, and book instantly via WhatsApp.
                 </p>
                 <div className="space-y-3 sm:space-y-4">

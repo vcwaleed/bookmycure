@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import FilterBar from "../components/FilterBar";
 import PackageCard from "../components/PackageCard";
@@ -65,9 +65,11 @@ const HealthPackagesPage = () => {
         </div>
       ) : (
         <div className="text-center mt-20 mb-5">
-          <img
+          <Image
             src="/no-data.png"
             alt="No Packages Found"
+            width={208}
+            height={208}
             className="w-52 mx-auto mb-6 opacity-80"
           />
           <h2 className="text-2xl font-semibold text-gray-700">
