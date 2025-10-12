@@ -39,7 +39,7 @@ export default function Banner() {
                         </p>
 
                         <Link
-                            href="/"
+                            href="/healthpackages"
                             className="relative inline-block bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-4 py-2 rounded-md transition-all duration-300"
                         >
                             GET TEST PRICES
@@ -51,7 +51,7 @@ export default function Banner() {
                         BookMyCure — Your Health Partner
                     </h2>
                     <Link
-                        href="/book"
+                        href="/healthpackages"
                         className="relative inline-block bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-4 py-2 rounded-md transition-all duration-300"
                     >
                         GET TEST PRICES

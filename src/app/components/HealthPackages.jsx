@@ -60,7 +60,7 @@ export default function HealthPackages() {
                   {pkg.oldPrice}
                 </p>
               </div>
-              <Link  href={'/'} className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-4 py-2 rounded-md transition-colors">
+              <Link  href={'/healthpackages'} className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-4 py-2 rounded-md transition-colors">
                 View Details
               </Link>
             </div>

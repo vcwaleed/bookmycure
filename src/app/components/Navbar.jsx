@@ -81,7 +81,7 @@ export default function Navbar() {
             </li>
             <li>
               <Link
-                href="/packages"
+                href="/healthpackages"
                 className="block py-2 px-3 md:p-0 text-gray-800 hover:text-blue-700 transition-colors duration-200"
               >
                 Health Packages
