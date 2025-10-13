@@ -21,14 +21,7 @@ const packages = [
     price: "Rs 1599",
     oldPrice: "RS 7320",
     discount: "78% Discount",
-  },
-  {
-    title: "Annual Health Checkup- Advance With Free HsCRP",
-    tests: "91 Tests Included",
-    price: "Rs 1599",
-    oldPrice: "Rs 7920",
-    discount: "79% Discount",
-  },
+  }
 ];
 
 export default function HealthPackages() {

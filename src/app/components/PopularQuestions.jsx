@@ -83,7 +83,6 @@ const PopularQuestions = () => {
 
     return (
         <section className="bg-gradient-to-br from-purple-50 to-purple-100">
-            {/* Intro Section */}
             <div className="bg-brand">
                 <div className="max-w-screen-xl mx-auto px-4 py-3">
                     <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
