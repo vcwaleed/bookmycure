@@ -7,10 +7,8 @@ const FilterBar = ({ setCityFilter, setSortBy, setSearchQuery }) => {
   const [isTyping, setIsTyping] = useState(false);
 
   return (
-    <div className="bg-gradient-to-r from-white to-blue-50 p-6 rounded-xl shadow-lg border border-gray-100 my-8">
-      <h2 className="text-xl font-bold text-gray-800 mb-4 text-center md:text-left">
-        Filter Health Packages
-      </h2>
+    <div className=" container mx-auto px-4 py-8  bg-gradient-to-r from-white to-blue-50 p-6 rounded-xl shadow-lg border border-gray-100 my-8">
+     
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>

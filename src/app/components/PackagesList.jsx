@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import PackageCard from "./PackageCard";
 
-const PackagesList = ({ type }) => {
+const PackagesList = ({ type, cityFilter, sortBy, searchQuery }) => {
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,6 +27,29 @@ const PackagesList = ({ type }) => {
     fetchPackages();
   }, [type]);
 
+  const filteredAndSortedPackages = packages
+    .filter((pkg) => {
+      if (!cityFilter) return true;
+      return pkg.city.toLowerCase() === cityFilter.toLowerCase();
+    })
+    .filter((pkg) => {
+      if (!searchQuery) return true;
+      return (
+        pkg.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (pkg.tests && pkg.tests.some((test) =>
+          test.name.toLowerCase().includes(searchQuery.toLowerCase())
+        ))
+      );
+    })
+    .sort((a, b) => {
+      if (sortBy === "low-to-high") {
+        return a.price - b.price;
+      } else if (sortBy === "high-to-low") {
+        return b.price - a.price;
+      }
+      return 0;
+    });
+
   if (loading) {
     return <div className="text-center py-10">Loading packages...</div>;
   }
@@ -40,10 +63,10 @@ const PackagesList = ({ type }) => {
       <h1 className="text-3xl font-bold text-center mb-8 capitalize">
         {type === 'spa' ? 'Aesthetic & Wellness Clinics package' : `${type} Packages`}
       </h1>
-      {packages.length > 0 ? (
+      {filteredAndSortedPackages.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-          {packages.map((pkg) => (
+          {filteredAndSortedPackages.map((pkg) => (
             <PackageCard key={pkg.id} pkg={pkg} />
           ))}
         </div>
