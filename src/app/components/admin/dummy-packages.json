@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Basic Health Checkup",
+    "price": 999,
+    "details": "A comprehensive checkup for your overall health."
+  },
+  {
+    "id": 2,
+    "name": "Advanced Health Checkup",
+    "price": 1999,
+    "details": "An advanced checkup with more tests for a detailed analysis."
+  },
+  {
+    "id": 3,
+    "name": "Full Body Checkup",
+    "price": 2999,
+    "details": "A full body checkup for a complete health assessment."
+  }
+]

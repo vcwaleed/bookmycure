@@ -20,7 +20,7 @@ const SpaPackages = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">Spa Packages</h1>
+      <h1 className="text-3xl font-bold mb-6">Aesthetic & Wellness Clinics Packages</h1>
       <PackageTable packages={packages} onDelete={handleDelete} />
     </div>
   );
