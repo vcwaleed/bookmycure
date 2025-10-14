@@ -81,7 +81,7 @@ const AdminModal = ({ admin, onClose, onSave }) => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter email address"
-                  className="pl-10 w-full rounded-lg border border-gray-300  bg-white  text-gray-900  py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                  className="pl-10 w-full rounded-lg border bg-white  text-gray-900  py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                   required
                 />
               </div>
