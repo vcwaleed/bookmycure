@@ -1,36 +1,37 @@
 'use client'
 import Image from "next/image"
+import { useEffect, useState } from "react"
 
 const stats = [
-  {
-    icon: "/customer.png",
-    title: "7,53,723+",
-    subtitle: "Happy Customers",
-  },
-  {
-    icon: "/rating.png",
-    title: "Rated 4.6/5.0",
-    subtitle: "By Users On Google",
-  },
-  {
-    icon: "/testbooked.png",
-    title: "28,500+",
-    subtitle: "Tests Booked",
-  },
-  {
-    icon: "/city.png",
-    title: "Covering 250+",
-    subtitle: "Cities",
-  },
+  { icon: "/customer.png", subtitle: "Happy Customers" },
+  { icon: "/rating.png", subtitle: "By Users On Google" },
+  { icon: "/testbooked.png", subtitle: "Tests Booked" },
+  { icon: "/city.png", subtitle: "Cities" },
 ]
 
 export default function ReasonBanner() {
+  const [titles, setTitles] = useState([])
+
+  useEffect(() => {
+    const fetchTitles = async () => {
+      try {
+        const res = await fetch("/reasonBanner.json")
+        const data = await res.json()
+        setTitles(data.titles || [])
+      } catch (error) {
+        console.error("Error fetching titles:", error)
+      }
+    }
+    fetchTitles()
+  }, [])
+
   return (
     <section className="bg-gray-50 py-12 md:py-16 px-4">
       <div className="max-w-screen-xl mx-auto px-4 py-3">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 md:mb-14 text-center md:text-left">
           Why <span className="text-blue-600">BookMyCure?</span>
         </h2>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-16">
           {stats.map((item, index) => (
             <div key={index} className="relative flex items-center justify-center">
@@ -45,8 +46,11 @@ export default function ReasonBanner() {
                   />
                 </div>
               </div>
+
               <div className="bg-white w-full rounded-2xl shadow-md py-6 sm:py-8 pl-12 sm:pl-16 lg:pl-14 pr-4 sm:pr-6 text-left hover:shadow-lg transition-shadow duration-300 min-h-28 sm:min-h-32 flex flex-col justify-center">
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900">{item.title}</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
+                  {titles[index] || "Loading..."}
+                </h3>
                 <p className="text-gray-600 mt-1 text-sm sm:text-base">{item.subtitle}</p>
               </div>
             </div>
