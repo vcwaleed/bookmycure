@@ -4,12 +4,14 @@ import PopularQuestions from "./components/PopularQuestions";
 import ReasonBanner from "./components/ReasonBanner";
 import WhatsAppIcon from "./components/WhatsAppIcon";
 import HealthPackages from "./components/HealthPackages";
+import AestheticWellnessClinics from "./components/AestheticWellnessClinics";
 export default function Home() {
   return (
     <div className="font-sans bg-white min-h-screen">
      <Banner/>
      <ServiceCard/>
      <HealthPackages/>
+     <AestheticWellnessClinics/>
      <ReasonBanner/>
      <PopularQuestions/>
      <WhatsAppIcon/>
