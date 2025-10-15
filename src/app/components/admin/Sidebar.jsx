@@ -23,6 +23,7 @@ const Sidebar = () => {
     { href: "/admin/spa-packages", label: "Aesthetic Clinics Packages", icon: <Bot /> },
     { href: "/admin/create-package", label: "Create New", icon: <PlusSquare /> },
     { href: "/admin/manage-admins", label: "Manage Admin", icon: <Users /> },
+    { href: "/admin/consultants", label: "Manage Consultants", icon: <Users /> },
   ];
 
   return (
