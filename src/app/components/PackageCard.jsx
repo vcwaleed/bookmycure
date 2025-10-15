@@ -7,7 +7,7 @@ const PackageCard = ({ pkg }) => {
   const whatsappUrl = `https://wa.me/${pkg.phone}?text=Hi, I want to book the ${pkg.name} test.`;
 
   const healthImages = ["/health1.png", "/health2.png", "/health3.png", "/health3.png", "/health4.png"];
-  const spaImages = ["/spa1.png", "/spa2.png", "/spa3.png", "/spa4.png"];
+  const spaImages = ["/spa1.png","/spa3.png", "/spa4.png"];
 
   const getRandomImage = (type) => {
     if (type === 'health') {

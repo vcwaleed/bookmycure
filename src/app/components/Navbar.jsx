@@ -97,6 +97,14 @@ export default function Navbar() {
                 Health Packages
               </Link>
             </li>
+             <li>
+              <Link
+                href="/aestheticclinics"
+                className="block py-2 px-3 md:p-0 text-gray-800 hover:text-blue-700 transition-colors duration-200"
+              >
+                Aesthetic Clinics Packages
+              </Link>
+            </li>
 
             {/* Login Button */}
             <li className="mt-3 md:mt-0">
