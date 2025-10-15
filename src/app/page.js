@@ -5,6 +5,7 @@ import ReasonBanner from "./components/ReasonBanner";
 import WhatsAppIcon from "./components/WhatsAppIcon";
 import HealthPackages from "./components/HealthPackages";
 import AestheticWellnessClinics from "./components/AestheticWellnessClinics";
+import Consultant from "./components/Consultant";
 export default function Home() {
   return (
     <div className="font-sans bg-white min-h-screen">
@@ -13,6 +14,7 @@ export default function Home() {
      <HealthPackages/>
      <AestheticWellnessClinics/>
      <ReasonBanner/>
+     <Consultant/>
      <PopularQuestions/>
      <WhatsAppIcon/>
     </div>

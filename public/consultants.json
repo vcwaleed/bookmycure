@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Ayesha Khan",
+    "specialization": "Dermatologist & Aesthetic Specialist",
+    "location": "Clifton, Karachi",
+    "address": "Wellness Skin Clinic, Block 5, Clifton, Karachi",
+    "description": "Dr. Ayesha specializes in advanced skin rejuvenation, laser treatments, and facial aesthetics with over 10 years of experience.",
+    "whatsapp": "+923001234567"
+  },
+ {
+    "id": 1,
+    "name": "Dr. Ayesha Khan",
+    "specialization": "Dermatologist & Aesthetic Specialist",
+    "location": "Clifton, Karachi",
+    "address": "Wellness Skin Clinic, Block 5, Clifton, Karachi",
+    "description": "Dr. Ayesha specializes in advanced skin rejuvenation, laser treatments, and facial aesthetics with over 10 years of experience.",
+    "whatsapp": "+923001234567"
+  },
+  {
+    "id": 3,
+    "name": "Dr. Ayesha Khan",
+    "specialization": "Dermatologist & Aesthetic Specialist",
+    "location": "Clifton, Karachi",
+    "address": "Wellness Skin Clinic, Block 5, Clifton, Karachi",
+    "description": "Dr. Ayesha specializes in advanced skin rejuvenation, laser treatments, and facial aesthetics with over 10 years of experience.",
+    "whatsapp": "+923001234567"
+  }
+]
