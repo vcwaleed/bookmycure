@@ -1,0 +1,19 @@
+
+[
+  {
+    "id": 1,
+    "title": "PureSkin & Laser Studio",
+    "services": "Laser Hair Removal & Skin Tightening",
+    "price": "2999",
+    "oldPrice": "8500",
+    "discount": "67"
+  },
+  {
+    "id": 2,
+    "title": "Wellness & Aesthetics Clinic",
+    "services": "Botox & Fillers",
+    "price": "4999",
+    "oldPrice": "10000",
+    "discount": "50"
+  }
+]

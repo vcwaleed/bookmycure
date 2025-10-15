@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Package, Heart, Bot, PlusSquare, Menu, Users } from "lucide-react";
+import { Package, Heart, Bot, PlusSquare, Menu, Users ,Home} from "lucide-react";
 
 const sidebarVariants = {
   open: { width: "250px", transition: { duration: 0.3 } },
@@ -17,6 +17,7 @@ const Sidebar = () => {
   const currentYear = new Date().getFullYear();
 
   const menuItems = [
+    { href: "/admin", label: "Home", icon: <Home /> },
     { href: "/admin/all-packages", label: "All Packages", icon: <Package /> },
     { href: "/admin/health-packages", label: "Health Packages", icon: <Heart /> },
     { href: "/admin/spa-packages", label: "Aesthetic Clinics Packages", icon: <Bot /> },

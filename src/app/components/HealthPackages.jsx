@@ -4,23 +4,23 @@ const packages = [
   {
     title: "Vital Screening Package",
     tests: "82 Tests Included",
-    price: "Rs 599",
-    oldPrice: "Rs2010",
-    discount: "70% Discount",
+    price: "599",
+    oldPrice: "2010",
+    discount: "70",
   },
   {
     title: "Fit Pakistan Full Body With Free Vit B12",
     tests: "89 Tests Included",
-    price: "Rs 1099",
-    oldPrice: "RS 4775",
-    discount: "76% Discount",
+    price: "1099",
+    oldPrice: "4775",
+    discount: "76",
   },
   {
     title: "Smart Plus Full Body Check-Up With Vitamin With Free HScrp",
     tests: "91 Tests Included",
-    price: "Rs 1599",
-    oldPrice: "RS 7320",
-    discount: "78% Discount",
+    price: "1599",
+    oldPrice: "7320",
+    discount: "78",
   }
 ];
 
@@ -38,7 +38,7 @@ export default function HealthPackages() {
             className="relative bg-white shadow-md rounded-xl p-5 hover:shadow-lg transition-shadow duration-300"
           >
             <span className="absolute top-3 left-3 bg-brand text-white text-xs font-semibold px-3 py-1 rounded">
-              {pkg.discount}
+              {pkg.discount}% Discount
             </span>
 
             <h3 className="mt-10 font-semibold text-lg text-gray-800">
@@ -48,9 +48,9 @@ export default function HealthPackages() {
 
             <div className="mt-4 flex items-center justify-between">
               <div>
-                <p className="text-orange-500 font-bold text-xl">{pkg.price}</p>
+                <p className="text-orange-500 font-bold text-xl">Rs{pkg.price}</p>
                 <p className="text-gray-400 text-sm line-through">
-                  {pkg.oldPrice}
+                  Rs{pkg.oldPrice}
                 </p>
               </div>
               <Link  href={'/healthpackages'} className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-4 py-2 rounded-md transition-colors">

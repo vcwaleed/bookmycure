@@ -5,23 +5,23 @@ const clinics = [
     {
         title: "Glow Aesthetics Clinic",
         services: "Skin, Hair, Laser Treatments",
-        price: "Rs 2499",
-        oldPrice: "Rs 7200",
-        discount: "65% Discount",
+        price: "2499",
+        oldPrice: "7200",
+        discount: "65",
     },
     {
         title: "DermaCare Wellness Center",
         services: "Advanced Hair Restoration & PRP Therapy",
-        price: "Rs 3499",
-        oldPrice: "Rs 9800",
-        discount: "64% Discount",
+        price: "3499",
+        oldPrice: "9800",
+        discount: "64",
     },
     {
         title: "PureSkin & Laser Studio",
         services: "Laser Hair Removal & Skin Tightening",
-        price: "Rs 2999",
-        oldPrice: "Rs 8500",
-        discount: "67% Discount",
+        price: "2999",
+        oldPrice: "8500",
+        discount: "67",
     },
 ];
 
@@ -38,7 +38,7 @@ export default function AestheticWellnessClinics() {
                         className="relative bg-white shadow-md rounded-xl p-5 hover:shadow-lg transition-shadow duration-300"
                     >
                         <span className="absolute top-3 left-3 bg-brand text-white text-xs font-semibold px-3 py-1 rounded">
-                            {clinic.discount}
+                            {clinic.discount}%Discount
                         </span>
                         <h3 className="mt-10 font-semibold text-lg text-gray-800">
                             {clinic.title}
@@ -46,9 +46,9 @@ export default function AestheticWellnessClinics() {
                         <p className="text-sm text-gray-500 mt-1">{clinic.services}</p>
                         <div className="mt-4 flex items-center justify-between">
                             <div>
-                                <p className="text-orange-500 font-bold text-xl">{clinic.price}</p>
+                                <p className="text-orange-500 font-bold text-xl">Rs{clinic.price}</p>
                                 <p className="text-gray-400 text-sm line-through">
-                                    {clinic.oldPrice}
+                                    Rs{clinic.oldPrice}
                                 </p>
                             </div>
 
