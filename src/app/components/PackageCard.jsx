@@ -6,11 +6,25 @@ import { MapPin} from "lucide-react";
 const PackageCard = ({ pkg }) => {
   const whatsappUrl = `https://wa.me/${pkg.phone}?text=Hi, I want to book the ${pkg.name} test.`;
 
+  const healthImages = ["/health1.png", "/health2.png", "/health3.png", "/health3.png", "/health4.png"];
+  const spaImages = ["/spa1.png", "/spa2.png", "/spa3.png", "/spa4.png"];
+
+  const getRandomImage = (type) => {
+    if (type === 'health') {
+      return healthImages[Math.floor(Math.random() * healthImages.length)];
+    } else if (type === 'spa') {
+      return spaImages[Math.floor(Math.random() * spaImages.length)];
+    }
+    return "/banner2.jpg";
+  };
+
+  const imageSrc = getRandomImage(pkg.type);
+
   return (
     <div className="bg-white rounded-2xl mb-8 shadow-lg overflow-hidden transform hover:-translate-y-1 hover:shadow-2xl transition-all duration-300">
       <div className="relative w-full h-48">
         <Image
-          src={pkg.image}
+          src={imageSrc}
           alt={pkg.name}
           fill
           className="object-cover"
