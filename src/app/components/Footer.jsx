@@ -29,7 +29,7 @@ export default function Footer() {
                             <li>
                                 Email: <a href="mailto:info@bookmycure.com" className="hover:text-blue-600 transition-colors">info@bookmycure.com</a>
                             </li>
-                            <li>Phone: +92 300 1234567</li>
+                            <li>Phone: 03164346667</li>
                             <li>Location: Lahore, Pakistan</li>
                         </ul>
                     </div>

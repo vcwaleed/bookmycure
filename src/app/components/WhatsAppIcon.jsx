@@ -1,7 +1,7 @@
 "use client";
 
 const WhatsAppIcon = ({ number, message }) => {
-  const whatsappNumber = number || "923065167490";
+  const whatsappNumber = number || "923164346667";
   const whatsappMessage = message || "Hi, I need your help to find lab tests.";
 
   const encodedMessage = encodeURIComponent(whatsappMessage);
