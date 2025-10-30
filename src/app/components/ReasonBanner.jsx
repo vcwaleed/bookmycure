@@ -15,9 +15,16 @@ export default function ReasonBanner() {
   useEffect(() => {
     const fetchTitles = async () => {
       try {
-        const res = await fetch("/reasonBanner.json")
+        const res = await fetch("/api/reason-banner-stats") 
         const data = await res.json()
-        setTitles(data.titles || [])
+        const { happyCustomers, googleRating, testsBooked, cities } = data
+        const formattedTitles = [
+          happyCustomers,
+          `${googleRating}/5.0`,
+          testsBooked,
+          cities
+        ]
+        setTitles(formattedTitles)
       } catch (error) {
         console.error("Error fetching titles:", error)
       }
