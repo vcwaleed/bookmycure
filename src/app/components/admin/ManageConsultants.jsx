@@ -12,7 +12,7 @@ const ManageConsultants = () => {
   const [consultantToDelete, setConsultantToDelete] = useState(null);
 
   useEffect(() => {
-    fetch('/consultants.json')
+    fetch('/api/consultants')
       .then((res) => res.json())
       .then((data) => setConsultants(data));
   }, []);
@@ -35,27 +35,38 @@ const ManageConsultants = () => {
   const handleSave = async (consultantData) => {
     const isNew = !consultantData.id;
     const url = isNew ? '/api/consultants' : `/api/consultants/${consultantData.id}`;
-    const method = isNew ? 'POST' : 'PATCH';
+    const method = isNew ? 'POST' : 'PUT';
 
-    console.log(`Calling ${method} ${url} with data:`, consultantData);
+    try {
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(consultantData),
+      });
+      const savedConsultant = await response.json();
 
-    if (isNew) {
-      const newConsultant = { ...consultantData, id: Date.now() };
-      setConsultants([...consultants, newConsultant]);
-    } else {
-      setConsultants(
-        consultants.map((c) => (c.id === consultantData.id ? consultantData : c))
-      );
+      if (isNew) {
+        setConsultants([...consultants, savedConsultant]);
+      } else {
+        setConsultants(
+          consultants.map((c) => (c.id === savedConsultant.id ? savedConsultant : c))
+        );
+      }
+    } catch (error) {
+      console.error("Error saving consultant:", error);
     }
+
     setIsModalOpen(false);
   };
 
   const handleConfirmDelete = async () => {
-    const url = `/api/consultants/${consultantToDelete}`;
-    const method = 'DELETE';
-    console.log(`Calling ${method} ${url}`);
+    try {
+      await fetch(`/api/consultants/${consultantToDelete}`, { method: 'DELETE' });
+      setConsultants(consultants.filter((c) => c.id !== consultantToDelete));
+    } catch (error) {
+      console.error("Error deleting consultant:", error);
+    }
 
-    setConsultants(consultants.filter((c) => c.id !== consultantToDelete));
     setIsConfirmOpen(false);
     setConsultantToDelete(null);
   };
@@ -85,6 +96,7 @@ const ManageConsultants = () => {
                   <th className="py-3 px-4 text-left font-semibold">Name</th>
                   <th className="py-3 px-4 text-left font-semibold">Specialization</th>
                   <th className="py-3 px-4 text-left font-semibold">Location</th>
+                  <th className="py-3 px-4 text-left font-semibold">Address</th>
                   <th className="py-3 px-4 text-center font-semibold">Actions</th>
                 </tr>
               </thead>
@@ -100,6 +112,7 @@ const ManageConsultants = () => {
                     </td>
                     <td className="py-3 px-4">{consultant.specialization}</td>
                     <td className="py-3 px-4">{consultant.location}</td>
+                    <td className="py-3 px-4">{consultant.address}</td>
                     <td className="py-3 px-4 text-center">
                       <button
                         onClick={() => handleEdit(consultant)}

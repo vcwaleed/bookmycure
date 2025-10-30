@@ -6,13 +6,18 @@ const AllPackages = () => {
   const [packages, setPackages] = useState([]);
 
   useEffect(() => {
-    fetch('/packages.json')
+    fetch('/api/packages')
       .then((res) => res.json())
-      .then((data) => setPackages(data));
+      .then((data) => setPackages(data.data));
   }, []);
 
-  const handleDelete = (id) => {
-    setPackages(packages.filter((pkg) => pkg.id !== id));
+  const handleDelete = async (id) => {
+    try {
+      await fetch(`/api/packages/${id}`, { method: 'DELETE' });
+      setPackages(packages.filter((pkg) => pkg._id !== id));
+    } catch (error) {
+      console.error("Error deleting package:", error);
+    }
   };
 
   return (

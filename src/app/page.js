@@ -8,7 +8,7 @@ import AestheticWellnessClinics from "./components/AestheticWellnessClinics";
 import Consultant from "./components/Consultant";
 export default function Home() {
   return (
-    <div className="font-sans bg-white min-h-screen">
+    <div className="bg-white min-h-screen">
      <Banner/>
      <ServiceCard/>
      <HealthPackages/>

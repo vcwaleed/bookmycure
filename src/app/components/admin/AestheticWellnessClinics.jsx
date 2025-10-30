@@ -1,33 +1,45 @@
-"use client";
-import { useState } from "react";
+'use client';
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Plus, Edit, Trash } from "lucide-react";
 import AestheticWellnessClinicModal from "./AestheticWellnessClinicModal";
-import dummyClinics from "./AestheticWellnessClinics.json";
 
 const AestheticWellnessClinics = () => {
-  const [clinics, setClinics] = useState(dummyClinics);
+  const [clinics, setClinics] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingClinic, setEditingClinic] = useState(null);
 
-  const handleAddClinic = (newClinic) => {
-    const newClinics = [...clinics, { ...newClinic, id: Date.now() }];
-    setClinics(newClinics);
-    // Here you would ideally write back to the JSON file
+  useEffect(() => {
+    fetch('/api/aesthetic-wellness-clinics')
+      .then(res => res.json())
+      .then(data => setClinics(data));
+  }, []);
+
+  const handleAddClinic = async (newClinic) => {
+    const response = await fetch('/api/aesthetic-wellness-clinics', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newClinic),
+    });
+    const savedClinic = await response.json();
+    setClinics([...clinics, savedClinic]);
   };
 
-  const handleUpdateClinic = (updatedClinic) => {
-    const newClinics = clinics.map((clinic) =>
-      clinic.id === editingClinic.id ? { ...clinic, ...updatedClinic } : clinic
-    );
-    setClinics(newClinics);
-    // Here you would ideally write back to the JSON file
+  const handleUpdateClinic = async (updatedClinic) => {
+    const response = await fetch(`/api/aesthetic-wellness-clinics/${editingClinic._id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedClinic),
+    });
+    const savedClinic = await response.json();
+    setClinics(clinics.map((clinic) =>
+      clinic._id === editingClinic._id ? savedClinic : clinic
+    ));
   };
 
-  const handleDeleteClinic = (id) => {
-    const newClinics = clinics.filter((clinic) => clinic.id !== id);
-    setClinics(newClinics);
-    // Here you would ideally write back to the JSON file
+  const handleDeleteClinic = async (id) => {
+    await fetch(`/api/aesthetic-wellness-clinics/${id}`, { method: 'DELETE' });
+    setClinics(clinics.filter((clinic) => clinic._id !== id));
   };
 
   const openModal = (clinic = null) => {
@@ -66,7 +78,7 @@ const AestheticWellnessClinics = () => {
           </thead>
           <tbody className="text-gray-700">
             {clinics.map((clinic) => (
-              <motion.tr layout key={clinic.id} className="border-b border-gray-200 hover:bg-gray-50">
+              <motion.tr layout key={clinic._id} className="border-b border-gray-200 hover:bg-gray-50">
                 <td className="py-4 px-6">{clinic.title}</td>
                 <td className="py-4 px-6">{clinic.services}</td>
                 <td className="py-4 px-6">{clinic.price}</td>
@@ -77,7 +89,7 @@ const AestheticWellnessClinics = () => {
                     <button onClick={() => openModal(clinic)} className="text-blue-600 hover:text-blue-800">
                       <Edit className="w-5 h-5" />
                     </button>
-                    <button onClick={() => handleDeleteClinic(clinic.id)} className="text-red-600 hover:text-red-800">
+                    <button onClick={() => handleDeleteClinic(clinic._id)} className="text-red-600 hover:text-red-800">
                       <Trash className="w-5 h-5" />
                     </button>
                   </div>

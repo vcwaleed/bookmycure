@@ -1,33 +1,45 @@
-"use client";
-import { useState } from "react";
+'use client';
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Plus, Edit, Trash } from "lucide-react";
 import PopularHealthPackageModal from "./PopularHealthPackageModal";
-import dummyPackages from "./dummy-packages.json";
 
 const PopularHealthPackages = () => {
-  const [packages, setPackages] = useState(dummyPackages);
+  const [packages, setPackages] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingPackage, setEditingPackage] = useState(null);
 
-  const handleAddPackage = (newPackage) => {
-    const newPackages = [...packages, { ...newPackage, id: Date.now() }];
-    setPackages(newPackages);
-    // Here you would ideally write back to the JSON file
+  useEffect(() => {
+    fetch('/api/health-packages')
+      .then(res => res.json())
+      .then(data => setPackages(data));
+  }, []);
+
+  const handleAddPackage = async (newPackage) => {
+    const response = await fetch('/api/health-packages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newPackage),
+    });
+    const savedPackage = await response.json();
+    setPackages([...packages, savedPackage]);
   };
 
-  const handleUpdatePackage = (updatedPackage) => {
-    const newPackages = packages.map((pkg) =>
-      pkg.id === editingPackage.id ? { ...pkg, ...updatedPackage } : pkg
-    );
-    setPackages(newPackages);
-    // Here you would ideally write back to the JSON file
+  const handleUpdatePackage = async (updatedPackage) => {
+    const response = await fetch(`/api/health-packages/${editingPackage._id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedPackage),
+    });
+    const savedPackage = await response.json();
+    setPackages(packages.map((pkg) =>
+      pkg._id === editingPackage._id ? savedPackage : pkg
+    ));
   };
 
-  const handleDeletePackage = (id) => {
-    const newPackages = packages.filter((pkg) => pkg.id !== id);
-    setPackages(newPackages);
-    // Here you would ideally write back to the JSON file
+  const handleDeletePackage = async (id) => {
+    await fetch(`/api/health-packages/${id}`, { method: 'DELETE' });
+    setPackages(packages.filter((pkg) => pkg._id !== id));
   };
 
   const openModal = (pkg = null) => {
@@ -66,7 +78,7 @@ const PopularHealthPackages = () => {
           </thead>
           <tbody className="text-gray-700">
             {packages.map((pkg) => (
-              <motion.tr layout key={pkg.id} className="border-b border-gray-200 hover:bg-gray-50">
+              <motion.tr layout key={pkg._id} className="border-b border-gray-200 hover:bg-gray-50">
                 <td className="py-4 px-6">{pkg.title}</td>
                 <td className="py-4 px-6">{pkg.tests}</td>
                 <td className="py-4 px-6">{pkg.price}</td>
@@ -77,7 +89,7 @@ const PopularHealthPackages = () => {
                     <button onClick={() => openModal(pkg)} className="text-blue-600 hover:text-blue-800">
                       <Edit className="w-5 h-5" />
                     </button>
-                    <button onClick={() => handleDeletePackage(pkg.id)} className="text-red-600 hover:text-red-800">
+                    <button onClick={() => handleDeletePackage(pkg._id)} className="text-red-600 hover:text-red-800">
                       <Trash className="w-5 h-5" />
                     </button>
                   </div>

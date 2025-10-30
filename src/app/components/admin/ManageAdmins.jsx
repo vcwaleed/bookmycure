@@ -1,17 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AdminTable from './AdminTable';
 import AdminModal from './AdminModal';
 import ConfirmationDialog from './ConfirmationDialog';
-import dummyAdmins from './dummy-admins.json';
 
 const ManageAdmins = () => {
-  const [admins, setAdmins] = useState(dummyAdmins);
+  const [admins, setAdmins] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAdmin, setSelectedAdmin] = useState(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [adminToDelete, setAdminToDelete] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/admins')
+      .then((res) => res.json())
+      .then((data) => setAdmins(data));
+  }, []);
 
   const handleAddAdmin = () => {
     setSelectedAdmin(null);
@@ -28,19 +33,43 @@ const ManageAdmins = () => {
     setIsDeleteDialogOpen(true);
   };
 
-  const confirmDelete = () => {
-    setAdmins(admins.filter((admin) => admin.id !== adminToDelete.id));
+  const confirmDelete = async () => {
+    try {
+      await fetch(`/api/admins/${adminToDelete._id}`, { method: 'DELETE' });
+      setAdmins(admins.filter((admin) => admin._id !== adminToDelete._id));
+    } catch (error) {
+      console.error("Error deleting admin:", error);
+    }
+
     setIsDeleteDialogOpen(false);
     setAdminToDelete(null);
   };
 
-  const handleSaveAdmin = (admin) => {
-    if (admin.id) {
-      setAdmins(admins.map((a) => (a.id === admin.id ? admin : a)));
-    } else {
-      const newAdmin = { ...admin, id: Date.now() };
-      setAdmins([...admins, newAdmin]);
+  const handleSaveAdmin = async (admin) => {
+    const isNew = !admin._id;
+    const url = isNew ? '/api/admins' : `/api/admins/${admin._id}`;
+    const method = isNew ? 'POST' : 'PUT';
+
+    try {
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(admin),
+      });
+      const savedAdmin = await response.json();
+
+      if (isNew) {
+        setAdmins([...admins, savedAdmin]);
+      } else {
+        setAdmins(
+          admins.map((a) => (a._id === savedAdmin._id ? savedAdmin : a))
+        );
+      }
+    } catch (error) {
+      console.error("Error saving admin:", error);
     }
+
+    setIsModalOpen(false);
   };
 
   return (

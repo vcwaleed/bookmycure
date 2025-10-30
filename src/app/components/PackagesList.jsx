@@ -9,14 +9,30 @@ const PackagesList = ({ type, cityFilter, sortBy, searchQuery }) => {
 
   useEffect(() => {
     const fetchPackages = async () => {
+      setLoading(true);
       try {
-        const response = await fetch("/packages.json");
+        let url = '/api/packages';
+        if (type === 'health') {
+          url = '/api/health-packages';
+        } else if (type === 'spa') {
+          url = '/api/aesthetic-wellness-clinics';
+        }
+
+        const params = new URLSearchParams();
+        if (cityFilter) params.append('city', cityFilter);
+        if (sortBy) params.append('sortBy', sortBy);
+        if (searchQuery) params.append('search', searchQuery);
+
+        const response = await fetch(`${url}?${params.toString()}`);
         if (!response.ok) {
           throw new Error("Failed to fetch packages");
         }
-        const data = await response.json();
-        const filteredPackages = data.filter((pkg) => pkg.type === type);
-        setPackages(filteredPackages);
+        const result = await response.json();
+        if (result.data) {
+          setPackages(result.data);
+        } else {
+          setPackages(result);
+        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -25,30 +41,7 @@ const PackagesList = ({ type, cityFilter, sortBy, searchQuery }) => {
     };
 
     fetchPackages();
-  }, [type]);
-
-  const filteredAndSortedPackages = packages
-    .filter((pkg) => {
-      if (!cityFilter) return true;
-      return pkg.city.toLowerCase() === cityFilter.toLowerCase();
-    })
-    .filter((pkg) => {
-      if (!searchQuery) return true;
-      return (
-        pkg.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (pkg.tests && pkg.tests.some((test) =>
-          test.name.toLowerCase().includes(searchQuery.toLowerCase())
-        ))
-      );
-    })
-    .sort((a, b) => {
-      if (sortBy === "low-to-high") {
-        return a.price - b.price;
-      } else if (sortBy === "high-to-low") {
-        return b.price - a.price;
-      }
-      return 0;
-    });
+  }, [type, cityFilter, sortBy, searchQuery]);
 
   if (loading) {
     return <div className="text-center py-10">Loading packages...</div>;
@@ -63,11 +56,11 @@ const PackagesList = ({ type, cityFilter, sortBy, searchQuery }) => {
       <h1 className="text-3xl font-bold text-center mb-8 capitalize">
         {type === 'spa' ? 'Aesthetic & Wellness Clinics package' : `${type} Packages`}
       </h1>
-      {filteredAndSortedPackages.length > 0 ? (
+      {packages.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-          {filteredAndSortedPackages.map((pkg) => (
-            <PackageCard key={pkg.id} pkg={pkg} />
+          {packages.map((pkg) => (
+            <PackageCard key={pkg._id} pkg={pkg} />
           ))}
         </div>
       ) : (

@@ -1,7 +1,7 @@
-"use client";
+'use client';
 import { useState, useEffect } from "react";
 
-const AdminReasonBannerEditor = ({ onUpdate }) => {
+const AdminReasonBannerEditor = () => {
   const [formData, setFormData] = useState({
     happyCustomers: "",
     googleRating: "",
@@ -9,14 +9,17 @@ const AdminReasonBannerEditor = ({ onUpdate }) => {
     cities: "",
   });
   const [loading, setLoading] = useState(true);
+  const [statId, setStatId] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/reasonBanner.json");
+        const response = await fetch("/api/reason-banner-stats");
         const data = await response.json();
-        const [happyCustomers, googleRating, testsBooked, cities] = data.titles;
-        setFormData({ happyCustomers, googleRating, testsBooked, cities });
+        if (data) {
+          setFormData(data);
+          setStatId(data._id);
+        }
       } catch (error) {
         console.error("Error fetching reason banner data:", error);
       } finally {
@@ -32,15 +35,21 @@ const AdminReasonBannerEditor = ({ onUpdate }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const updatedTitles = [
-      formData.happyCustomers,
-      formData.googleRating,
-      formData.testsBooked,
-      formData.cities,
-    ];
-    onUpdate({ titles: updatedTitles });
+    const url = statId ? `/api/reason-banner-stats/${statId}` : '/api/reason-banner-stats';
+    const method = statId ? 'PUT' : 'POST';
+
+    try {
+      await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      // Optionally show a success message
+    } catch (error) {
+      console.error("Error updating reason banner data:", error);
+    }
   };
 
   if (loading) {

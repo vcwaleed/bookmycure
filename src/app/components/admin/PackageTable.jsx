@@ -20,7 +20,7 @@ const PackageTable = ({ packages, onDelete }) => {
   };
 
   const handleConfirmDelete = () => {
-    onDelete(selectedPackage.id);
+    onDelete(selectedPackage._id);
     setIsConfirmOpen(false);
     setSelectedPackage(null);
   };
@@ -55,14 +55,14 @@ const PackageTable = ({ packages, onDelete }) => {
             {packages.length > 0 ? (
               packages.map((pkg, index) => (
                 <tr
-                  key={pkg.id || index}
+                  key={pkg._id || index}
                   className="hover:bg-blue-50 transition duration-150 ease-in-out"
                 >
                   <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-800">
                     {pkg.name}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-gray-600">
-                    Rs {pkg.price}
+                     {pkg.price}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-gray-600">
                     {pkg.city}

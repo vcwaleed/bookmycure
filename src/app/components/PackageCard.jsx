@@ -25,7 +25,7 @@ const PackageCard = ({ pkg }) => {
       <div className="relative w-full h-48">
         <Image
           src={imageSrc}
-          alt={pkg.name}
+          alt={pkg.title}
           fill
           className="object-cover"
           sizes="100%"
@@ -34,7 +34,7 @@ const PackageCard = ({ pkg }) => {
       </div>
 
       <div className="p-5 space-y-3">
-        <h3 className="text-xl font-bold text-gray-800">{pkg.name}</h3>
+        <h3 className="text-xl font-bold text-gray-800">{pkg.title}</h3>
         <p className="text-gray-600 text-sm">
           Includes <span className="font-semibold">{pkg.numberOfTests}</span>{" "}
           tests
@@ -42,15 +42,15 @@ const PackageCard = ({ pkg }) => {
         <div className="text-sm text-gray-500 space-y-1">
           <p className="flex items-center gap-2">
             <MapPin size={16} className="text-blue-500" />
-            <span>{pkg.city}</span>
+            <span>{pkg.address}</span>
           </p>
-          {pkg.address && (
+          {/* {pkg.address && (
             <p className="flex items-center gap-2 pl-[22px]">{pkg.address}</p>
-          )}
+          )} */}
         </div>
         <div className="flex items-center mb-2">
-          <p className="text-xl font-bold text-green-600 mr-2">Rs {pkg.price}</p>
-          <p className="text-gray-400 line-through text-sm">Rs {pkg.oldPrice}</p>
+          <p className="text-xl font-bold text-green-600 mr-2">{pkg.price}</p>
+          <p className="text-gray-400 line-through text-sm"> {pkg.oldPrice}</p>
           {pkg.discount && (
             <span className="ml-auto bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
               {pkg.discount}
@@ -59,7 +59,7 @@ const PackageCard = ({ pkg }) => {
         </div>
         <div className="flex justify-between mt-3">
           <Link
-            href={`/package/${pkg.id}`}
+            href={`/package/${pkg._id}`}
             className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors duration-300"
           >
             View Details

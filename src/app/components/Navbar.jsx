@@ -110,7 +110,7 @@ export default function Navbar() {
             <li className="mt-3 md:mt-0">
               <Link
                 href="/login"
-                className="flex items-center gap-2 px-5 py-2 rounded-lg border  text-green-400 font-semibold  transition-all duration-200"
+                className="flex items-center gap-2 px-5 py-2 rounded-lg border  text-orange-400 font-semibold  transition-all duration-200"
               >
                 <LogIn size={18} />
                 Login
