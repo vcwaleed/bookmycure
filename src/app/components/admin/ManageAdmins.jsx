@@ -23,10 +23,6 @@ const ManageAdmins = () => {
     setIsModalOpen(true);
   };
 
-  const handleEditAdmin = (admin) => {
-    setSelectedAdmin(admin);
-    setIsModalOpen(true);
-  };
 
   const handleDeleteAdmin = (admin) => {
     setAdminToDelete(admin);
@@ -84,7 +80,6 @@ const ManageAdmins = () => {
       </div>
       <AdminTable
         admins={admins}
-        onEdit={handleEditAdmin}
         onDelete={handleDeleteAdmin}
       />
       {isModalOpen && (

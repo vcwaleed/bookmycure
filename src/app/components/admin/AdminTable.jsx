@@ -17,8 +17,7 @@ const AdminTable = ({ admins, onEdit, onDelete }) => {
               <td className="px-6 py-4 whitespace-nowrap">{admin.email}</td>
               <td className="px-6 py-4 whitespace-nowrap">{admin.password}</td>
               <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <button onClick={() => onEdit(admin)} className="text-indigo-600 hover:text-indigo-900 mr-4">Edit</button>
-                <button onClick={() => onDelete(admin)} className="text-red-600 hover:text-red-900">Delete</button>
+                <button onClick={() => onDelete(admin)} className="text-red-600 hover:text-red-900 cursor-pointer">Delete</button>
               </td>
             </tr>
           ))}
