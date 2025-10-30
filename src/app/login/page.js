@@ -10,15 +10,32 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const router = useRouter(); 
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (email === "admin@gmail.com" && password === "12345") {
-      localStorage.setItem("isLoggedIn", "true");
-      router.push("/admin");
+  const handleLogin = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch("/api/admins");
+    const admins = await res.json();
+
+    const user = admins.find(
+      (admin) => admin.email === email && admin.password === password
+    );
+
+    if (user) {
+      localStorage.setItem("role", user.role);
+      if (user.role === "admin") {
+        router.push("/admin");
+      } else {
+        router.push("/login");
+      }
     } else {
-      alert("Invalid credentials (try admin@example.com / 12345)");
+      alert("Invalid email or password.");
     }
-  };
+  } catch (err) {
+    console.error("Login error:", err);
+    alert("Something went wrong. Try again.");
+  }
+};
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-white to-green-100 px-4">
       <motion.div

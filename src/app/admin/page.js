@@ -2,8 +2,18 @@
 import PopularHealthPackages from "../components/admin/PopularHealthPackages";
 import AdminReasonBannerEditor from "../components/admin/AdminReasonBannerEditor";
 import AestheticWellnessClinics from "../components/admin/AestheticWellnessClinics";
-
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 const AdminDashboard = () => {
+    const router = useRouter();
+
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+    if (role !== "admin") {
+      router.push("/login");
+    }
+  }, [router]);
+  
   const handleUpdate = (data) => {
     console.log("Updated data:", data);
   };
