@@ -6,9 +6,16 @@ export async function GET() {
   try {
     await dbConnect();
     const consultants = await Consultant.find({});
-    return NextResponse.json(consultants);
+    const consultantsWithId = consultants.map((c) => ({
+      ...c.toObject(),
+      id: c._id.toString(),
+    }));
+    return NextResponse.json(consultantsWithId);
   } catch (error) {
-    return NextResponse.json({ message: "Error fetching consultants", error }, { status: 500 });
+    return NextResponse.json(
+      { message: "Error fetching consultants", error },
+      { status: 500 }
+    );
   }
 }
 

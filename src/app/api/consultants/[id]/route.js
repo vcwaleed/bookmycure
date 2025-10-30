@@ -3,9 +3,10 @@ import dbConnect from "@/lib/db";
 import Consultant from "@/models/Consultant";
 
 export async function GET(request, { params }) {
+  const { id } = params;
   try {
     await dbConnect();
-    const consultant = await Consultant.findById(params.id);
+    const consultant = await Consultant.findById(id);
     if (!consultant) {
       return NextResponse.json({ message: "Consultant not found" }, { status: 404 });
     }
@@ -16,10 +17,11 @@ export async function GET(request, { params }) {
 }
 
 export async function PUT(request, { params }) {
+  const { id } = params;
   try {
     await dbConnect();
     const data = await request.json();
-    const updatedConsultant = await Consultant.findByIdAndUpdate(params.id, data, { new: true });
+    const updatedConsultant = await Consultant.findByIdAndUpdate(id, data, { new: true });
     return NextResponse.json(updatedConsultant);
   } catch (error) {
     return NextResponse.json({ message: "Error updating consultant", error }, { status: 500 });
@@ -27,9 +29,10 @@ export async function PUT(request, { params }) {
 }
 
 export async function DELETE(request, { params }) {
+  const { id } = params;
   try {
     await dbConnect();
-    await Consultant.findByIdAndDelete(params.id);
+    await Consultant.findByIdAndDelete(id);
     return NextResponse.json({ message: "Consultant deleted successfully" });
   } catch (error) {
     return NextResponse.json({ message: "Error deleting consultant", error }, { status: 500 });
