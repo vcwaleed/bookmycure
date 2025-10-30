@@ -9,11 +9,6 @@ const PackageTable = ({ packages, onDelete }) => {
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState(null);
 
-  const handleEdit = (pkg) => {
-    setSelectedPackage(pkg);
-    setIsModalOpen(true);
-  };
-
   const handleDeleteClick = (pkg) => {
     setSelectedPackage(pkg);
     setIsConfirmOpen(true);
@@ -74,14 +69,14 @@ const PackageTable = ({ packages, onDelete }) => {
                     {pkg.type}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right">
-                    <div className="flex justify-end gap-3">
-                      <button
+                    <div className="flex gap-3">
+                      {/* <button
                         onClick={() => handleEdit(pkg)}
                         className="p-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition duration-200"
                         title="Edit Package"
                       >
                         <Pencil size={18} />
-                      </button>
+                      </button> */}
                       <button
                         onClick={() => handleDeleteClick(pkg)}
                         className="p-2 rounded-full bg-red-100 text-red-600 hover:bg-red-600 hover:text-white transition duration-200"

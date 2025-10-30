@@ -2,10 +2,27 @@
 import PackageForm from './PackageForm';
 
 const CreatePackage = () => {
-  const handleCreate = (formData) => {
-    console.log('Creating new package:', formData);
-    alert('Package created successfully! (Check console for data)');
-  };
+const handleCreate = async (formData) => {
+  try {
+    const response = await fetch('/api/packages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      toast.success('Package created successfully!');
+    } else {
+      const errorData = await response.json();
+      toast.error(`Error creating package: ${errorData.message || response.statusText}`);
+    }
+  } catch (error) {
+    console.error('Error creating package:', error);
+    toast.error('Error creating package');
+  }
+};
 
   return (
     <div>

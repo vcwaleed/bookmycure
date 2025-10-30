@@ -12,12 +12,6 @@ const PackagesList = ({ type, cityFilter, sortBy, searchQuery }) => {
       setLoading(true);
       try {
         let url = '/api/packages';
-        if (type === 'health') {
-          url = '/api/health-packages';
-        } else if (type === 'spa') {
-          url = '/api/aesthetic-wellness-clinics';
-        }
-
         const params = new URLSearchParams();
         if (cityFilter) params.append('city', cityFilter);
         if (sortBy) params.append('sortBy', sortBy);
@@ -29,7 +23,8 @@ const PackagesList = ({ type, cityFilter, sortBy, searchQuery }) => {
         }
         const result = await response.json();
         if (result.data) {
-          setPackages(result.data);
+          const filteredPackages = result.data.filter((pkg) => pkg.type === type);
+          setPackages(filteredPackages);
         } else {
           setPackages(result);
         }

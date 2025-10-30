@@ -13,10 +13,10 @@ const HealthPackageTable = ({ packages, onDelete }) => {
     }
   };
 
-  const handleEditClick = (pkg) => {
-    setSelectedPackage(pkg);
-    setIsModalOpen(true);
-  };
+  // const handleEditClick = (pkg) => {
+  //   setSelectedPackage(pkg);
+  //   setIsModalOpen(true);
+  // };
 
   const handleModalClose = () => {
     setIsModalOpen(false);
@@ -76,13 +76,13 @@ const HealthPackageTable = ({ packages, onDelete }) => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right">
                     <div className="flex justify-end gap-3">
-                      <button
+                      {/* <button
                         onClick={() => handleEditClick(pkg)}
                         className="p-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition duration-200"
                         title="Edit Package"
                       >
                         <Edit size={18} />
-                      </button>
+                      </button> */}
                       <button
                         onClick={() => handleDeleteClick(pkg)}
                         className="p-2 rounded-full bg-red-100 text-red-600 hover:bg-red-600 hover:text-white transition duration-200"
