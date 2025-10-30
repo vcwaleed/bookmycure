@@ -1,0 +1,82 @@
+
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  email String  @unique
+  name  String
+  role  String  @default("admin")
+}
+
+model AestheticWellnessClinic {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  services String
+  price    String
+  oldPrice String
+  discount String
+  address  String?
+}
+
+model Consultant {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  specialization String
+  location       String
+}
+
+model HealthPackage {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  tests    String
+  price    String
+  oldPrice String?
+  discount String?
+  address  String?
+}
+
+model Package {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  numberOfTests Int
+  price         Int
+  oldPrice      Int?
+  discount      String?
+  image         String?
+  description   String?
+  city          String?
+  address       String?
+  phone         String?
+  category      String?
+  type          String?
+}
+
+model ReasonBannerStat {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  happyCustomers String
+  googleRating   String
+  testsBooked    String
+  cities         String
+}
+
+model Stat {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  icon     String
+  title    String
+  subtitle String
+}

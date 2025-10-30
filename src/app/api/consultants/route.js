@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
+import dbConnect from "@/lib/db";
+import Consultant from "@/models/Consultant";
 
 export async function GET() {
   try {
-    const consultants = await prisma.consultant.findMany();
+    await dbConnect();
+    const consultants = await Consultant.find({});
     return NextResponse.json(consultants);
   } catch (error) {
     return NextResponse.json({ message: "Error fetching consultants", error }, { status: 500 });
@@ -12,16 +14,15 @@ export async function GET() {
 
 export async function POST(request) {
   try {
+    await dbConnect();
     const { name, specialization, location, address, description, whatsapp } = await request.json();
-    const newConsultant = await prisma.consultant.create({
-      data: {
-        name,
-        specialization,
-        location,
-        address,
-        description,
-        whatsapp,
-      },
+    const newConsultant = await Consultant.create({
+      name,
+      specialization,
+      location,
+      address,
+      description,
+      whatsapp,
     });
     return NextResponse.json(newConsultant, { status: 201 });
   } catch (error) {

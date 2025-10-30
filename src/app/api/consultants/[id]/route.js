@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
+import dbConnect from "@/lib/db";
+import Consultant from "@/models/Consultant";
 
 export async function GET(request, { params }) {
   try {
-    const consultant = await prisma.consultant.findUnique({
-      where: { id: params.id },
-    });
+    await dbConnect();
+    const consultant = await Consultant.findById(params.id);
     if (!consultant) {
       return NextResponse.json({ message: "Consultant not found" }, { status: 404 });
     }
@@ -17,11 +17,9 @@ export async function GET(request, { params }) {
 
 export async function PUT(request, { params }) {
   try {
+    await dbConnect();
     const data = await request.json();
-    const updatedConsultant = await prisma.consultant.update({
-      where: { id: params.id },
-      data,
-    });
+    const updatedConsultant = await Consultant.findByIdAndUpdate(params.id, data, { new: true });
     return NextResponse.json(updatedConsultant);
   } catch (error) {
     return NextResponse.json({ message: "Error updating consultant", error }, { status: 500 });
@@ -30,9 +28,8 @@ export async function PUT(request, { params }) {
 
 export async function DELETE(request, { params }) {
   try {
-    await prisma.consultant.delete({
-      where: { id: params.id },
-    });
+    await dbConnect();
+    await Consultant.findByIdAndDelete(params.id);
     return NextResponse.json({ message: "Consultant deleted successfully" });
   } catch (error) {
     return NextResponse.json({ message: "Error deleting consultant", error }, { status: 500 });
