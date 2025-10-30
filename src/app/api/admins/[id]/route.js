@@ -5,7 +5,7 @@ import Admin from "@/models/Admin";
 export async function GET(request, { params }) {
   await dbConnect();
   try {
-    const admin = await Admin.findById(params.id);
+    const admin = await Admin.findById(params.id).select("+password");
     if (!admin) {
       return NextResponse.json({ message: "Admin not found" }, { status: 404 });
     }
@@ -18,10 +18,10 @@ export async function GET(request, { params }) {
 export async function PUT(request, { params }) {
   await dbConnect();
   try {
-    const { name, email, role } = await request.json();
+    const { name, email, role, password } = await request.json();
     const updatedAdmin = await Admin.findByIdAndUpdate(
       params.id,
-      { name, email, role },
+      { name, email, role, password },
       { new: true }
     );
     if (!updatedAdmin) {

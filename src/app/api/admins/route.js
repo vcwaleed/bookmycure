@@ -15,11 +15,12 @@ export async function GET() {
 export async function POST(request) {
   await dbConnect();
   try {
-    const { name, email, role } = await request.json();
+    const { name, email, role, password } = await request.json();
     const newAdmin = new Admin({
       name,
       email,
       role,
+      password,
     });
     await newAdmin.save();
     return NextResponse.json(newAdmin, { status: 201 });

@@ -15,6 +15,13 @@ const AdminSchema = new mongoose.Schema({
     enum: ['admin', 'superadmin'],
     default: 'admin',
   },
+  password: {
+    type: String,
+    required: true,
+    select: true,
+  },
 });
 
-export default mongoose.models.Admin || mongoose.model("Admin", AdminSchema);
+delete mongoose.models.Admin;
+export default mongoose.model("Admin", AdminSchema);
+
