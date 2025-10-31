@@ -34,7 +34,7 @@ const PackageCard = ({ pkg }) => {
       </div>
 
       <div className="p-5 space-y-3">
-        <h3 className="text-xl font-bold text-gray-800">{pkg.title}</h3>
+        <h3 className="text-xl font-bold text-gray-800">{pkg.name}</h3>
         <p className="text-gray-600 text-sm">
           Includes <span className="font-semibold">{pkg.numberOfTests}</span>{" "}
           tests
