@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Award, Zap } from "lucide-react";
+import { ShieldCheck, Award, Zap } from "lucide-react";
 
 export default function Banner() {
     return (
@@ -21,12 +21,12 @@ export default function Banner() {
                             BookMyCure is Pakistan’s #1 platform for comparing lab test prices and booking appointments at trusted labs and clinics nationwide.
                         </p>
                         
-                        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        {/* <div className="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                             <Link href="/healthpackages"
                                 className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 bg-orange-600 text-white font-semibold rounded-full shadow-lg hover:bg-gray-700 transition-transform transform hover:scale-105 duration-300">
                                     Explore Packages <ArrowRight className="ml-2 w-5 h-5" />
                             </Link>
-                        </div>
+                        </div> */}
 
                         <div className="mt-12 text-center lg:text-left">
                             <p className="text-sm text-gray-500 font-medium">Trusted by thousands of patients across Pakistan</p>
