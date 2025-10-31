@@ -1,34 +1,36 @@
 'use client';
+import { useState } from 'react';
 import PackageForm from './PackageForm';
 
 const CreatePackage = () => {
-const handleCreate = async (formData) => {
-  try {
-    const response = await fetch('/api/packages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
+  const [formKey, setFormKey] = useState(0);
 
-    if (response.ok) {
-      toast.success('Package created successfully!');
-    } else {
-      const errorData = await response.json();
-      toast.error(`Error creating package: ${errorData.message || response.statusText}`);
+  const handleCreate = async (formData) => {
+    try {
+      const response = await fetch('/api/packages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setFormKey((prevKey) => prevKey + 1);
+      } else {
+        const errorData = await response.json();
+      }
+    } catch (error) {
+      console.error('Error creating package:', error);
     }
-  } catch (error) {
-    console.error('Error creating package:', error);
-    toast.error('Error creating package');
-  }
-};
+  };
 
   return (
     <div>
+   
       <h1 className="text-3xl font-bold mb-6">Create New Package</h1>
       <div className="bg-white p-8 rounded-lg shadow-md">
-        <PackageForm onSubmit={handleCreate} />
+        <PackageForm key={formKey} onSubmit={handleCreate} />
       </div>
     </div>
   );

@@ -58,6 +58,7 @@ const PackageForm = ({ initialData = {}, onSubmit, onCancel }) => {
               value={formData[field.name]}
               onChange={handleChange}
               placeholder={field.placeholder}
+              required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition duration-200"
             />
           ))}
@@ -66,6 +67,7 @@ const PackageForm = ({ initialData = {}, onSubmit, onCancel }) => {
             name="type"
             value={formData.type}
             onChange={handleChange}
+            required
             className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition duration-200"
           >
             <option value="health">Health</option>
@@ -80,9 +82,11 @@ const PackageForm = ({ initialData = {}, onSubmit, onCancel }) => {
             onChange={handleChange}
             placeholder="Description"
             rows="4"
+            required
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition duration-200 resize-none"
           ></textarea>
         </div>
+
         <div className="flex justify-end gap-3 pt-4">
           {onCancel && (
             <button
