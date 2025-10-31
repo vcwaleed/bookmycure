@@ -27,7 +27,7 @@ export default function Footer() {
                         </h2>
                         <ul className="space-y-2 text-gray-600 text-sm sm:text-base">
                             <li>
-                                Email: <a href="mailto:info@bookmycure.com" className="hover:text-blue-600 transition-colors">info@bookmycure.com</a>
+                                Email: <a href="mailto:info@bookmycure.com" className="hover:text-blue-600 transition-colors">bookmycureofficial@gmail.com</a>
                             </li>
                             <li>Phone: 03164346667</li>
                             <li>Location: Lahore, Pakistan</li>
@@ -38,7 +38,7 @@ export default function Footer() {
                 <div className="border-t border-gray-200 mt-8 md:mt-12 pt-6 text-center">
                     <p className="text-sm text-gray-500">
                         © {new Date().getFullYear()}{' '}
-                        <a href="https://bookmycure.com/" className="font-semibold hover:text-blue-600 transition-colors">
+                        <a href="/" className="font-semibold hover:text-blue-600 transition-colors">
                             BookMyCure™
                         </a>. All Rights Reserved.
                     </p>
